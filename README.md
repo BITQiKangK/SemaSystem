@@ -1,4 +1,4 @@
-# SIGMOD 2026 Round 4 - SEMA
+# SEMA
 
 This repository contains the technical report and experimental scripts for reproducible research on SEMA.
 
@@ -44,8 +44,8 @@ pip install lotus-ai
 ```
 
 ### Datasets
-We use datasets from bird benchmark **Train Set**, which you can get from https://bird-bench.github.io/.
-We transform sqlite format of datasets to duckdb format, which make it more compatible with Sema and Flock.
+We use datasets from the bird benchmark **Train Set**, which you can get from https://bird-bench.github.io/.
+We transform the SQLite format of datasets to the DuckDB format, which makes it more compatible with Sema and Flock.
 For lotus, we transform them into parquet.
 
 ### Running Experiments
@@ -66,7 +66,7 @@ python3 q1.py
 
 ### SEMA
 #### Configuration
-For sema, you can set different configurations to enable/disable different optimizations.
+For Sema, you can set different configurations to enable/disable different optimizations.
 
 Sema supports OPENAI-compatible API formats.
 ```bash
@@ -93,7 +93,7 @@ insert into test values ('Moscow', 'Russia'), ('Beijing', 'Russia'), ('Shanghai'
 select * from test where s'Is {cap} the capital of {country}?';
 ```
 
-To see token costs and profile information, you can use profile insturction
+To see token costs and profile information, you can use the profile instruction
 ```bash
 explain analyze select * from test where s'Is {cap} the capital of {country}?';
 ```
@@ -105,12 +105,12 @@ To enable batch prompt, you can set:
 set semantic_batch_size = 4;
 set semantic_voting_rounds = 1;
 ```
-You can use explain to see logical plan where batch_size and voting rounds will be shown.
+You can use explain to see a logical plan where batch_size and voting rounds will be shown.
 
 ### AQE
 To enable AQE, you can set:
 ```bash
-# Only work for Q6-Q10
+# Only works for Q6-Q10
 set enable_semantic_filter_multiplexer = true; # open AQE
 set semantic_filter_accuracy_threshold = 0.9; # acc threshold
 set semantic_filter_latency_first = true; # false for cost first
@@ -118,7 +118,7 @@ set semantic_filter_batch_size=4; # batch for AQE (not same as semantic_batch_si
 set semantic_filter_voting_rounds; # voting rounds for AQE
 ```
 
-To check details of AQE(expression exploration, path exploration, pareto-frontier, path selection), you can profile select query like:
+To check details of AQE(expression exploration, path exploration, Pareto-frontier, path selection), you can profile a select query like:
 ```bash
 explain analyze SELECT id AS id
 FROM (SELECT id, Translated_Review
